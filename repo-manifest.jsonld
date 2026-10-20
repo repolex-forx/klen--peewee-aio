@@ -8,7 +8,7 @@
     {
       "@id": "https://repolex.ai/r/klen/peewee-aio/commit/18d306557645d62d49407bc964b0db04ea5fc1f5",
       "git:hexsha": "18d306557645d62d49407bc964b0db04ea5fc1f5",
-      "repolex:parseStatus": "metadata_complete",
+      "repolex:parseStatus": "ast_complete",
       "git:tagName": "3.3.0"
     },
     {
