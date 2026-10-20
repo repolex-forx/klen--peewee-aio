@@ -1,0 +1,11 @@
+{
+  "org": "klen",
+  "repo": "peewee-aio",
+  "versions": [
+    {
+      "commit": "18d306557645d62d49407bc964b0db04ea5fc1f5",
+      "tag": "3.3.0",
+      "parsed_at": "2026-10-20T21:10:10.949980+00:00"
+    }
+  ]
+}

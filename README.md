@@ -1,1 +1,114 @@
-Initializing
+# Repolex Knowledge Graph of klen/peewee-aio
+
+RDF knowledge graph data for [klen/peewee-aio](https://github.com/klen/peewee-aio), parsed by [repolex](https://repolex.ai).
+
+> **Note**: This data is experimental and subject to change without notice.
+
+## How to use this data
+
+The easiest way to get started is to install the [rlex](https://github.com/repolex-ai/rlex) query tool:
+
+```bash
+cargo install --git https://github.com/repolex-ai/rlex
+```
+
+Verify the install:
+
+```bash
+rlex --help
+```
+
+**rlex is designed to be used primarily by LLMs in a terminal.** Start up your favorite AI assistant and ask it to use rlex. It handles the SPARQL — you just ask questions in plain English.
+
+To load this repo's data:
+
+```bash
+rlex download klen/peewee-aio
+```
+
+Consult `rlex --help` for other options, including SPARQL queries, HTTP server, and interactive visualization.
+
+## Data structure
+
+All data is stored as gzip-compressed [N-Quads](https://www.w3.org/TR/n-quads/) (`.nq.gz`), a standard RDF format that can be loaded into any triplestore or graph database.
+
+```
+.
+├── aggregate
+│   ├── ast
+│   │   └── 18d306557645d62d49407bc964b0db04ea5fc1f5
+│   │       └── chunk-001.nq.gz
+│   └── repolex
+│       └── 18d306557645d62d49407bc964b0db04ea5fc1f5
+│           └── chunk-001.nq.gz
+├── blob
+│   ├── 0168852c3bc6a3a7a35639a458104be846021a07.nq.gz
+│   ├── 03cc122ce62280d98d3a1f0a87ca9a0631775034.nq.gz
+│   ├── 0b86b01d98a198ee65db7bfa20a425c7045ea5e0.nq.gz
+│   ├── 0d7db2e70341d714b105c6f518ededec1b6c0b2b.nq.gz
+│   ├── 0e13045f30d3b187b7fdc55bccdf8a67b6bf685f.nq.gz
+│   ├── 167f7077d8c45eb7271bb5a1efedc143c35351a1.nq.gz
+│   ├── 188f139b23842ab75a88f7e0f30153151ceb1ab9.nq.gz
+│   ├── 1ecd917889d0ecf249650b6333bf518cac6e6229.nq.gz
+│   ├── 32e5538f245defda94665161769880beb9497eab.nq.gz
+│   ├── 3756bdd3ce3485d4d564dc223a9ba8142761c82a.nq.gz
+│   ├── 4e97c5873b66866f8062688e81ba99d54293a89f.nq.gz
+│   ├── 544f24358faf259b959c1e865acf68c1a9b900e7.nq.gz
+│   ├── 56b7e1cd17130633fe305fe89e7c02c9ea5c06b4.nq.gz
+│   ├── 646457d136e0550414a0a2489772dfc9993bf63b.nq.gz
+│   ├── 674422f9ca862c5c3b9122b6862c6f4752c5f6e9.nq.gz
+│   ├── 6f49896990aebb3f5fee6cd29b79930435fc886e.nq.gz
+│   ├── 8a6fb5cad7ca3356375d9255b0e295100344b391.nq.gz
+│   ├── 90cc888e5ea17de93f5d31cc57f3473375915743.nq.gz
+│   ├── 9dd073cf879475721e3a0a55f7a989f6317c47b1.nq.gz
+│   ├── 9e325a2c4cf9d917a08b067e9a10f65d55e53d54.nq.gz
+│   ├── a123039ff6abd1c9c1448e8ab7bb3244a325e08b.nq.gz
+│   ├── a731aae3a87c63184cee7675a29ce32a56f1f549.nq.gz
+│   ├── aaadd3010eeeaecf595470ad73233849bf213a86.nq.gz
+│   ├── b5dcfc8174c86017d31b371188e0add60294dcd8.nq.gz
+│   ├── bd5671de727863a16d9ffbc5a7bb8829e6ecba8a.nq.gz
+│   ├── c0255969b7dc46ad9e7f605120d7aa5a626b3635.nq.gz
+│   ├── c2db9085386d8c38ebe98ca5c52495a22b0efce1.nq.gz
+│   ├── c5b57a006b42b57f1d550ca9e2611346bd6f2831.nq.gz
+│   ├── c78b90ed84e9cfe567bccc6e86ec370303a079e0.nq.gz
+│   ├── d014d7ad48af757180b28c63c4bdae0d37f0f72f.nq.gz
+│   ├── d173b6f95d8bb753df428bf11693f2a8ca8b3e00.nq.gz
+│   ├── dc61498887c3056d22a1cf430b8a622534958188.nq.gz
+│   ├── de4778acf3ee09b92865baf031fb00a7845410fe.nq.gz
+│   ├── e69de29bb2d1d6434b8b29ae775ad8c2e48c5391.nq.gz
+│   └── e9d5a2dda6ecb557076443f639ee91468179bb53.nq.gz
+├── branch
+│   └── branch.nq.gz
+├── commit
+│   └── commit.nq.gz
+├── filetree
+│   └── 18d306557645d62d49407bc964b0db04ea5fc1f5.nq.gz
+├── issue
+│   └── issue.nq.gz
+├── pr
+│   └── pr.nq.gz
+└── tag
+    └── tag.nq.gz
+
+13 directories, 43 files
+```
+
+| Directory | What it contains |
+|-----------|-----------------|
+| `blob/` | Per-file AST graphs, content-addressed by git blob SHA. Each file in the source repo gets its own graph. |
+| `aggregate/ast/` | Combined AST graph per parsed commit. Merges all blob graphs for a snapshot of the entire codebase at that point. |
+| `aggregate/lsp/` | Language Server Protocol enrichment: resolved symbols, definitions, references, and type information. |
+| `aggregate/dataflow/` | Interprocedural data flow edges between functions and modules. |
+| `aggregate/repolex/` | Combined graph (AST + LSP + dataflow) per commit. |
+| `commit/` | Git commit metadata (author, date, message, parent links). |
+| `branch/` | Branch metadata. |
+| `tag/` | Tag metadata. |
+| `filetree/` | File tree snapshots per commit (which files existed and their blob SHAs). |
+| `audit/` | Code architecture and graph audit reports per commit. |
+
+## Source repository
+
+[klen/peewee-aio](https://github.com/klen/peewee-aio)
+
+---
+*Parsed on 2026-10-20 by [repolex](https://repolex.ai)*
