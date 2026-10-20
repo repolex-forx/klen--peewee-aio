@@ -8,8 +8,9 @@
     {
       "@id": "https://repolex.ai/r/klen/peewee-aio/commit/18d306557645d62d49407bc964b0db04ea5fc1f5",
       "git:hexsha": "18d306557645d62d49407bc964b0db04ea5fc1f5",
-      "repolex:parseStatus": "ast_complete",
-      "git:tagName": "3.3.0"
+      "repolex:parseStatus": "parsed",
+      "git:tagName": "3.3.0",
+      "repolex:parsedAt": "2026-10-20T21:10:10.948957+00:00"
     },
     {
       "@id": "https://repolex.ai/r/klen/peewee-aio/commit/4c16c29504e55e9426df8734750a231815a2ee07",
